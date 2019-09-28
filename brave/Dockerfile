@@ -31,5 +31,5 @@ USER brave-user
 ENV LANG en-GB
 
 ENTRYPOINT ["brave-browser"]
-CMD ["--no-sandbox", "--ignore-gpu-blacklist"]
+CMD ["--no-sandbox", "--ignore-gpu-blacklist", "--test-type"]
 
