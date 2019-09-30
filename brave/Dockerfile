@@ -23,7 +23,7 @@ RUN curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc \
 
 COPY local.conf /etc/fonts/local.conf
 COPY ttf /usr/share/fonts/truetype/
-RUN apt-get install -y fonts-noto-color-emoji && fc-cache -f -v
+RUN fc-cache -f -v
 
 RUN groupadd -g 1000 brave-user \ 
     && useradd --no-log-init -rm -u 1000 -g 1000 brave-user
