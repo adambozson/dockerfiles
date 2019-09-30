@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+    brave:
+        image: adambozson/brave
+        volumes:
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - /dev/shm:/dev/shm
+            - ${XAUTHORITY}:/home/brave-user/.Xauthority
+            - ${HOME}/.config/BraveSoftware:/home/brave-user/.config/BraveSoftware
+            - ${HOME}/downloads:/home/brave-user/Downloads
+        network_mode: host
+        devices:
+            - /dev/dri
+        environment:
+            - DISPLAY
+
