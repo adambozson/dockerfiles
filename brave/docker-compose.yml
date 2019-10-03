@@ -8,9 +8,12 @@ services:
             - ${XAUTHORITY}:/home/brave-user/.Xauthority
             - ${HOME}/.config/BraveSoftware:/home/brave-user/.config/BraveSoftware
             - ${HOME}/downloads:/home/brave-user/Downloads
+            - /tmp/pulseaudio.socket:/tmp/pulseaudio.socket
         network_mode: host
         devices:
             - /dev/dri
         environment:
             - DISPLAY
+            - PULSE_SERVER
+            - PULSE_COOKIE
 

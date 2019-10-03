@@ -25,6 +25,9 @@ COPY local.conf /etc/fonts/local.conf
 COPY ttf /usr/share/fonts/truetype/
 RUN apt-get install -y fonts-noto-color-emoji && fc-cache -f -v
 
+RUN apt-get install -y pulseaudio --no-install-recommends
+COPY pulseaudio.client.conf /etc/pulse/client.conf
+
 RUN groupadd -g 1000 brave-user \ 
     && useradd --no-log-init -rm -u 1000 -g 1000 brave-user
 USER brave-user
