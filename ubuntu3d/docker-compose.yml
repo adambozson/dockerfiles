@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+    brave:
+        image: adambozson/ubuntu3d
+        volumes:
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - /dev/shm:/dev/shm
+            - ${XAUTHORITY}:/home/user/.Xauthority
+            - /tmp/pulseaudio.socket:/tmp/pulseaudio.socket
+        network_mode: host
+        devices:
+            - /dev/dri
+        environment:
+            - DISPLAY
+            - PULSE_SERVER
+            - PULSE_COOKIE
+
