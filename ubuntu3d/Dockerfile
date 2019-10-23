@@ -16,10 +16,5 @@ RUN apt-get -y install module-init-tools libglvnd-dev wget \
 
 RUN apt-get install -y mesa-utils
 
-RUN groupadd -g 1000 user \ 
-    && useradd --no-log-init -rm -u 1000 -g 1000 user
-USER user
-ENV LANG en-GB
-
 CMD ["glxgears"]
 
