@@ -1,6 +1,5 @@
 FROM clearlinux:base
-RUN swupd bundle-add desktop  # Install Ghostscript
-RUN swupd bundle-add texlive
+RUN swupd bundle-add --no-boot-update desktop texlive
 
 WORKDIR /src
 
