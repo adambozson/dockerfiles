@@ -10,6 +10,8 @@ RUN pacman -S --noconfirm pulseaudio pulseaudio-alsa lib32-libpulse lib32-alsa-p
 COPY pulseaudio.client.conf /etc/pulse/client.conf
 ENV PULSE_SERVER=/tmp/pulseaudio.socket PULSE_COOKIE=/tmp/pulseaudio.cookie
 
+COPY machine-id /etc/machine-id
+
 RUN groupadd -g 1000 steam-user \ 
     && useradd --no-log-init -rm -u 1000 -g 1000 steam-user
 USER steam-user
