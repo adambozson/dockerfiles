@@ -1,0 +1,13 @@
+FROM adambozson/arch-build
+LABEL maintainer "Adam Bozson <adam@bozson.io>"
+
+USER root
+RUN pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa
+
+USER developer
+COPY --chown=developer shairport-sync-for-arch-linux /home/developer/shairport-sync-for-arch-linux
+WORKDIR /home/developer/shairport-sync-for-arch-linux
+RUN makepkg -sfi --noconfirm
+
+COPY pulseaudio.client.conf /etc/pulse/client.conf
+ENV PULSE_SERVER=/tmp/pulseaudio.socket PULSE_COOKIE=/tmp/pulseaudio.cookie

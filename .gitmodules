@@ -1,0 +1,3 @@
+[submodule "shairport-sync/shairport-sync-for-arch-linux"]
+	path = shairport-sync/shairport-sync-for-arch-linux
+	url = https://github.com/adambozson/shairport-sync-for-arch-linux.git

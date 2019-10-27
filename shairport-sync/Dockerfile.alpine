@@ -1,0 +1,35 @@
+FROM alpine:3.10.3
+LABEL maintainer "Adam Bozson <adam@bozson.io>"
+
+RUN apk --update --no-cache add wget \
+                                unzip \
+                                build-base \
+                                autoconf \
+                                automake \
+                                libtool \
+                                popt-dev \
+                                libressl-dev \
+                                pulseaudio \
+                                pulseaudio-alsa \
+                                alsa-plugins-pulse \
+                                pulseaudio-dev \
+                                soxr-dev \
+                                avahi-dev \
+                                libconfig-dev \
+                                firefox-esr
+
+WORKDIR /tmp
+RUN wget https://github.com/mikebrady/shairport-sync/archive/3.3.2.zip && \
+    unzip /tmp/3.3.2.zip
+
+WORKDIR /tmp/shairport-sync-3.3.2 
+RUN autoreconf -i -f && \
+    ./configure --sysconfdir=/etc --with-avahi --with-ssl=openssl --with-soxr --with-pa --with-metadata && \
+    make && \
+    make install
+COPY shairport-sync.conf /etc/shairport-sync.conf
+
+COPY pulseaudio.client.conf /etc/pulse/client.conf
+ENV PULSE_SERVER=/tmp/pulseaudio.socket PULSE_COOKIE=/tmp/pulseaudio.cookie
+
+CMD ["bash"]
