@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     curl \
     gnupg2 \
+    software-properties-common \
     --no-install-recommends
 
 WORKDIR /tmp
@@ -27,6 +28,9 @@ RUN apt-get install -y fonts-noto-color-emoji && fc-cache -f -v
 
 RUN apt-get install -y pulseaudio --no-install-recommends
 COPY pulseaudio.client.conf /etc/pulse/client.conf
+
+RUN add-apt-repository -y ppa:dyatlov-igor/la-capitaine && \
+    apt-get install -y la-capitaine-cursor-theme
 
 RUN groupadd -g 1000 brave-user \ 
     && useradd --no-log-init -rm -u 1000 -g 1000 brave-user
